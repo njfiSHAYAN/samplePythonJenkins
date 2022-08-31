@@ -1,12 +1,9 @@
 pipeline {
-  agent none
+  agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
   stages {
     stage('version') {
-      agent {
-        docker {
-          image 'docker:dind'
-        }
-      }
       steps {
         sh 'docker ps'
       }
