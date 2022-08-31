@@ -1,14 +1,19 @@
 pipeline {
-  agent any
+  agent none
   stages {
     stage('version') {
+      agent {
+        docker {
+          image 'docker:dind'
+        }
+      }
       steps {
-        sh 'python --version'
+        sh 'docker ps'
       }
     }
     stage('hello') {
       steps {
-        sh 'python main.py'
+        sh 'docker images'
       }
     }
   }
